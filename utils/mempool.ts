@@ -17,7 +17,7 @@ export const getUtxos = async (address: string, networkType: string): Promise<IU
   const url = `https://mempool.space/${networkType}/api/address/${address}/utxo`;
   const res = await axios.get(url);
   const utxos: IUtxo[] = [];
-  
+
   res.data.forEach((utxoData: any) => {
     utxos.push({
       txid: utxoData.txid,
@@ -28,7 +28,7 @@ export const getUtxos = async (address: string, networkType: string): Promise<IU
   return utxos;
 };
 
-export const pushBTCpmt = async (rawtx: any,  networkType: string) => {
+export const pushBTCpmt = async (rawtx: any, networkType: string) => {
   const txid = await postData(
     `https://mempool.space/${networkType}/api/tx`,
     rawtx

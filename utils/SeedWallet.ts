@@ -28,8 +28,8 @@ export class SeedWallet {
   public publicKey: string;
   private bip32: BIP32Interface;
 
-  constructor(walletParam : ISeedWallet) {
-    if(walletParam.networkType == "mainnet") {
+  constructor(walletParam: ISeedWallet) {
+    if (walletParam.networkType == "mainnet") {
       this.network = networks.bitcoin;
     } else {
       this.network = networks.testnet;
@@ -39,6 +39,7 @@ export class SeedWallet {
     if (!bip39.validateMnemonic(mnemonic)) {
       throw new Error("invalid mnemonic");
     }
+
     this.bip32 = bip32.fromSeed(
       bip39.mnemonicToSeedSync(mnemonic),
       this.network

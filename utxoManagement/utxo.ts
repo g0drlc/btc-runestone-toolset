@@ -38,7 +38,7 @@ export const selectUTXO = async (utxos: IUtxo[], targetAmount: number, initialFe
     }
 
     for (let i = utxos.length; i > 0; i--) {
-        sum = sum - utxos[i].value;
+        sum = sum - utxos[i - 1].value;
         selectUTXO[utxos.length - i] = utxos[i];
         if (sum <= 0) break;
     }

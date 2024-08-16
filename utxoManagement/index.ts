@@ -14,7 +14,7 @@ interface IUtxo {
 }
 
 const SEND_UTXO_LIMIT = 7000;
-const SEND_AMOUNT = 100000;
+const SEND_AMOUNT = 10000;
 const INITIAL_FEE = 1000;
 const TESTNET_FEERATE = 20;
 const RECEIVEADDRESS = 'tb1p04dlalf3vehyh5dfgaseljxcjd7cztrgyagyhpkt4h02deqq8vuqh82xww';
@@ -40,6 +40,7 @@ const main = async () => {
         redeemFee = psbt.extractTransaction().virtualSize() * TESTNET_FEERATE;
     } while (redeemFee != initialFee)
 
+    console.log("redeemfee", redeemFee);
     const txHex = psbt.extractTransaction().toHex();
     console.log("txhex", txHex);
     const txId = await pushBTCpmt(txHex, networkType);
